@@ -11,3 +11,7 @@
 
 export const DEFAULT_LOCALE = 'en';
 export const NAVIGATE_TO = 'baiji/App/NAVIGATE_TO';
+export const ME_FROM_TOKEN = 'baiji/App/ME_FROM_TOKEN';
+export const ME_REQUEST_FAILED = 'baiji/App/ME_REQUEST_FAILED';
+export const ME_REQUEST_SUCCESS = 'baiji/App/ME_REQUEST_SUCCESS';
+export const SET_LOGGED_IN_STATUS = 'baiji/App/SET_LOGGED_IN_STATUS';

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`submitLoginForm Saga should dispatch the loginFailed action it request returns unsuccessfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/login",
+      Object {
+        "body": Object {
+          "password": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+          "username": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+        },
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`submitLoginForm Saga should dispatch the loginSuccess action it request returns successfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/login",
+      Object {
+        "body": Object {
+          "password": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+          "username": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+        },
+        "headers": Object {
+          "Content-Type": "application/json",
+        },
+        "method": "POST",
+      },
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

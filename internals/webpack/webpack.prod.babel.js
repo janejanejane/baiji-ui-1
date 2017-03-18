@@ -66,6 +66,10 @@ module.exports = require('./webpack.base.babel')({
 
       AppCache: false,
     }),
+
+    new webpack.DefinePlugin({
+      SERVICE_URL: JSON.stringify('https://api.baiji.com'),
+    }),
   ],
 
   performance: {

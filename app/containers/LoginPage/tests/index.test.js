@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import { submitLoginForm } from '../actions';
 import { LoginPage, mapDispatchToProps } from '../index';
 import messages from '../messages';
 
@@ -31,11 +32,27 @@ describe('<LoginPage />', () => {
   });
 
   describe('on form submit', () => {
-    it('should be injected', () => {
-      const dispatch = jest.fn();
-      const result = mapDispatchToProps(dispatch);
+    let dispatch = null;
+    let result = null;
 
+    beforeAll(() => {
+      dispatch = jest.fn();
+      result = mapDispatchToProps(dispatch);
+    });
+
+    it('should be injected', () => {
       expect(result.submitForm).toBeDefined();
+    });
+
+    it('should dispatch submitLoginForm with credentials of the user', () => {
+      const credentials = {
+        username: 'test',
+        password: 'pass',
+      };
+
+      result.submitForm(credentials);
+
+      expect(dispatch).toHaveBeenCalledWith(submitLoginForm(credentials));
     });
   });
 });

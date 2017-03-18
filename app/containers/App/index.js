@@ -14,9 +14,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { navigateTo } from './actions';
+import { navigateTo, meFromToken, setLoggedInStatus } from './actions';
 
-class App extends React.Component {
+export class App extends React.Component {
+
+  componentDidMount() {
+    const token = sessionStorage.getItem('jwtToken');
+    if (!token || token === '') {
+      this.props.dispatchSetLoggedInStatus(false);
+      return;
+    }
+    this.props.loadUserFromToken(token);
+  }
+
   componentDidUpdate(prevProps) {
     const { redirectUrl } = this.props;
     const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
@@ -30,7 +40,11 @@ class App extends React.Component {
   }
 
   render() {
-    return this.props.children;
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
@@ -39,11 +53,17 @@ App.propTypes = {
   redirectUrl: PropTypes.string,
   isLoggedIn: PropTypes.bool,
   dispatchNavigateTo: PropTypes.func,
+  loadUserFromToken: PropTypes.func,
+  dispatchSetLoggedInStatus: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatchNavigateTo: (url) => dispatch(navigateTo(url)),
+    loadUserFromToken: (token) => {
+      dispatch(meFromToken(token));
+    },
+    dispatchSetLoggedInStatus: (status) => dispatch(setLoggedInStatus(status)),
   };
 }
 

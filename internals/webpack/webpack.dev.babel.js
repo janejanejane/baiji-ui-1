@@ -23,6 +23,9 @@ const plugins = [
     exclude: /a\.js|node_modules/, // exclude node_modules
     failOnError: false, // show a warning when there is a circular dependency
   }),
+  new webpack.DefinePlugin({
+    SERVICE_URL: JSON.stringify('https://something.com'),
+  }),
 ];
 
 module.exports = require('./webpack.base.babel')({

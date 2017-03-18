@@ -14,9 +14,18 @@ import messages from './messages';
 import { submitLoginForm } from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
+  handleSubmit(e) {
     const { submitForm } = this.props;
 
+    e.preventDefault();
+
+    submitForm({
+      username: this.emailNode.value,
+      password: this.passwordNode.value,
+    });
+  }
+
+  render() {
     return (
       <div>
         <Helmet
@@ -27,23 +36,34 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
         />
         <FormattedMessage {...messages.header} />
         <div>
-          <form>
+          <form
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
             <div>
               <label htmlFor="inputEmail">Email</label>
               <div>
-                <input type="email" id="inputEmail" placeholder="Email" />
+                <input
+                  type="email"
+                  id="inputEmail"
+                  placeholder="Email"
+                  ref={(node) => { this.emailNode = node; }}
+                />
               </div>
             </div>
             <div>
               <label htmlFor="inputPassword">Password</label>
               <div>
-                <input type="password" id="inputPassword" placeholder="Password" />
+                <input
+                  type="password"
+                  id="inputPassword"
+                  placeholder="Password"
+                  ref={(node) => { this.passwordNode = node; }}
+                />
               </div>
             </div>
             <div>
               <div>
                 <button
-                  onSubmit={submitForm}
                   type="submit"
                 >Sign in</button>
               </div>
@@ -65,7 +85,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    submitForm: () => { dispatch(submitLoginForm()); },
+    submitForm: ({ username, password }) => { dispatch(submitLoginForm({ username, password })); },
   };
 }
 
